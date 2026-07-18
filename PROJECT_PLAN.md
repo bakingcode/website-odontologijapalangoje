@@ -123,7 +123,10 @@ faster, and safer than WordPress for our needs.
   (Formspree/Web3Forms), static-host form feature (Netlify Forms), or a small backend (Node/PHP).
 - **Checkpoint:** the Contacts page makes it effortless to call, email, or find the clinic — tested on a phone.
 
-## Module 8 — Polish: SEO, accessibility, performance  ☐
+## Module 8 — Polish: design, SEO, accessibility, performance  ◐
+> Design-polish order: (1) spacing + type scale foundation, (2) nav + hover/focus/transition +
+> mobile menu panel, (3) hero, (4) cards via CSS Grid (staff + services), (5) tables + mobile scroll,
+> (6) footer layout + contrast, (7) images. Then SEO/meta, a11y pass, Lighthouse.
 **Learn:** the things that separate a hobby page from a professional one.
 - Page titles, meta descriptions, Open Graph (link previews), favicon, sitemap
 - Accessibility pass (keyboard nav, contrast, alt text, labels)

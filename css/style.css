@@ -1,5 +1,5 @@
 * {
-    /*margin: 0;*/
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -9,6 +9,36 @@
     --spalva-akcen: #2A9D8F;
     --spalva-teksto: #22333B;
     --spalva-papil: #6B7C85;
+    --tarpas-s: 1rem;
+    --tarpas-m: 2rem;
+    --tarpas-l: 4rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-top: var(--tarpas-l);
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+h1, h2, h3 { 
+    line-height: 1.2; 
+    margin-bottom: var(--tarpas-s); 
+}
+
+p { 
+    margin-bottom: var(--tarpas-s); 
+}
+
+main.container {
+    padding-top: var(--tarpas-l);
+    padding-bottom: var(--tarpas-l);
 }
 
 body {
@@ -43,6 +73,24 @@ nav ul {
 nav a {
     text-decoration: none;
     color: var(--spalva-teksto);
+    display: block;
+    padding: 12px 0;
+    transition: color 0.2s ease;
+}
+
+nav a:hover, nav a:focus {
+    color: var(--spalva-akcen);
+}
+
+.meniu-mygtukas {
+    background: none;
+    border: none;
+    font-size: 1.75rem;         
+    color: var(--spalva-pagr);
+    cursor: pointer;   
+    position: static;
+    top: 20px;
+    right: 20px;         
 }
 
 .pavadinimas {
