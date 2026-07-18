@@ -127,6 +127,12 @@ faster, and safer than WordPress for our needs.
 > Design-polish order: (1) spacing + type scale foundation, (2) nav + hover/focus/transition +
 > mobile menu panel, (3) hero, (4) cards via CSS Grid (staff + services), (5) tables + mobile scroll,
 > (6) footer layout + contrast, (7) images. Then SEO/meta, a11y pass, Lighthouse.
+> **2026-07-18: design steps 1–6 applied** (Claude pass, per "good defaults for aesthetics" rule):
+> white sticky header, hero band + CTA buttons, card grid (`repeat(auto-fit, minmax(260px, 1fr))`),
+> zebra tables (2-col tables wrap fine on mobile — no scroll wrapper needed), dark footer,
+> `aria-current="page"` nav highlight on the 5 main pages. Accent darkened to #1f776c for text/buttons
+> (original #2A9D8F fails 4.5:1 contrast on white; kept as `--spalva-akcen` for decorative use).
+> Step 7 (images) blocked on photos — none migrated from `old_website/` yet. SEO/a11y/Lighthouse remain.
 **Learn:** the things that separate a hobby page from a professional one.
 - Page titles, meta descriptions, Open Graph (link previews), favicon, sitemap
 - Accessibility pass (keyboard nav, contrast, alt text, labels)

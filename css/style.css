@@ -1,3 +1,10 @@
+/* =====================================================================
+   Palangos odontologijos centras — stilius
+   Tvarka: kintamieji → bazė ir tipografija → antraštė ir meniu → hero
+   → mygtukai → kortelės → lentelės → poraštė → skambinimo mygtukas
+   → desktop (@media min-width: 768px)
+   ===================================================================== */
+
 * {
     margin: 0;
     box-sizing: border-box;
@@ -6,47 +13,334 @@
 :root {
     --spalva-pagr: #264653;
     --spalva-fono: #faffff;
+    --spalva-fono-svelni: #eef6f4;
+    --spalva-balta: #ffffff;
     --spalva-akcen: #2A9D8F;
+    --spalva-akcen-tamsi: #1f776c; /* tamsesnis akcentas — tekstui ant balto fono (kontrastas ≥ 4.5:1) */
     --spalva-teksto: #22333B;
-    --spalva-papil: #6B7C85;
+    --spalva-papil: #5d6d76;
+    --spalva-krastine: #dce8e6;
+    --tarpas-xs: 0.5rem;
     --tarpas-s: 1rem;
     --tarpas-m: 2rem;
     --tarpas-l: 4rem;
+    --seselis: 0 2px 10px rgba(38, 70, 83, 0.08);
 }
 
-h1 {
-    font-size: 2.5rem;
-}
-
-h2 {
-    font-size: 1.75rem;
-    margin-top: var(--tarpas-l);
-}
-
-h3 {
-    font-size: 1.25rem;
-}
-
-h1, h2, h3 { 
-    line-height: 1.2; 
-    margin-bottom: var(--tarpas-s); 
-}
-
-p { 
-    margin-bottom: var(--tarpas-s); 
-}
-
-main.container {
-    padding-top: var(--tarpas-l);
-    padding-bottom: var(--tarpas-l);
-}
+/* ---------- Bazė ir tipografija ---------- */
 
 body {
     background-color: var(--spalva-fono);
     color: var(--spalva-teksto);
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     line-height: 1.6;
+    /* flex stulpelis + auto tarpas poraštėje: poraštė visada prilimpa
+       prie lango apačios net trumpuose puslapiuose (pvz., Kontaktai) */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+h1, h2, h3 {
+    color: var(--spalva-pagr);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin-bottom: var(--tarpas-s);
+}
+
+h1 { font-size: 2rem; }
+
+h2 {
+    font-size: 1.5rem;
+    margin-top: var(--tarpas-m);
+}
+
+h3 { font-size: 1.25rem; }
+
+p { margin-bottom: var(--tarpas-s); }
+
+/* 65ch ≈ 65 simbolių eilutė — ilgesnes eilutes akiai sunku sekti */
+main p, main ul, main ol { max-width: 65ch; }
+
+main ul, main ol {
+    padding-left: 1.25rem;
+    margin-bottom: var(--tarpas-s);
+}
+
+main li { margin-bottom: var(--tarpas-xs); }
+
+main li::marker { color: var(--spalva-akcen); }
+
+address { font-style: normal; margin-bottom: var(--tarpas-s); }
+
+a {
+    color: var(--spalva-akcen-tamsi);
+    transition: color 0.2s ease;
+}
+
+a:hover { color: var(--spalva-pagr); }
+
+/* Ryškus kontūras naršant klaviatūra (Tab) — bet ne spaudžiant pele */
+:focus-visible {
+    outline: 3px solid var(--spalva-akcen);
+    outline-offset: 2px;
+}
+
+img { max-width: 100%; display: block; }
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+main.container {
+    padding-top: var(--tarpas-m);
+    padding-bottom: var(--tarpas-l);
+}
+
+/* ---------- Antraštė ir meniu ---------- */
+
+header {
+    background-color: var(--spalva-balta);
+    border-bottom: 1px solid var(--spalva-krastine);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+header .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+header p { margin-bottom: 0; }
+
+.pavadinimas {
+    text-decoration: none;
+    color: var(--spalva-pagr);
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+.pavadinimas:hover { color: var(--spalva-akcen-tamsi); }
+
+.meniu-mygtukas {
+    background: none;
+    border: none;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: var(--spalva-pagr);
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.meniu-mygtukas:hover { background-color: var(--spalva-fono-svelni); }
+
+nav {
+    display: none;
+    width: 100%;
+    padding-top: var(--tarpas-xs);
+}
+
+nav.rodo { display: block; }
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* brūkšnys tarp meniu eilučių telefone (tik tarp jų, ne virš pirmos) */
+nav li + li { border-top: 1px solid var(--spalva-krastine); }
+
+nav a {
+    text-decoration: none;
+    color: var(--spalva-teksto);
+    display: block;
+    padding: 0.75rem 0.25rem;
+    transition: color 0.2s ease;
+}
+
+nav a:hover, nav a:focus { color: var(--spalva-akcen-tamsi); }
+
+/* atidaryto puslapio nuoroda meniu (žymima HTML'e su aria-current="page") */
+nav a[aria-current="page"] {
+    color: var(--spalva-akcen-tamsi);
+    font-weight: 600;
+}
+
+/* ---------- Hero (pradžios puslapio viršus) ---------- */
+
+.hero {
+    background: linear-gradient(180deg, var(--spalva-fono-svelni), var(--spalva-fono));
+    text-align: center;
+    padding: var(--tarpas-l) 0;
+}
+
+.hero h1 { font-size: 2.25rem; }
+
+.paantraste {
+    font-size: 1.15rem;
+    color: var(--spalva-papil);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--tarpas-m);
+}
+
+.hero-mygtukai {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--tarpas-s);
+}
+
+/* ---------- Mygtukai ---------- */
+
+.mygtukas {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    border-radius: 999px;
+    background-color: var(--spalva-akcen-tamsi);
+    color: var(--spalva-balta);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.mygtukas:hover {
+    background-color: var(--spalva-pagr);
+    color: var(--spalva-balta);
+}
+
+.mygtukas-antrinis {
+    background-color: transparent;
+    color: var(--spalva-akcen-tamsi);
+    border: 2px solid var(--spalva-akcen-tamsi);
+}
+
+.mygtukas-antrinis:hover {
+    background-color: var(--spalva-fono-svelni);
+    color: var(--spalva-pagr);
+    border-color: var(--spalva-pagr);
+}
+
+/* ---------- Kortelės (personalas, paslaugos) ---------- */
+
+.korteles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--tarpas-s);
+    list-style: none;
+    padding-left: 0;
+    max-width: none; /* atšaukia "main ul" 65ch ribą */
+    margin-top: var(--tarpas-m);
+}
+
+.kortele {
+    background-color: var(--spalva-balta);
+    border: 1px solid var(--spalva-krastine);
+    border-radius: 12px;
+    padding: var(--tarpas-m);
+    box-shadow: var(--seselis);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+}
+
+.kortele h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+}
+
+.kortele > :last-child { margin-bottom: 0; }
+
+/* "Skaityti plačiau" nustumiamas į kortelės apačią, kad eilėje
+   stovinčių kortelių nuorodos būtų viename lygyje */
+.kortele a {
+    margin-top: auto;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.kortele a:hover { text-decoration: underline; }
+
+.pareigos {
+    color: var(--spalva-akcen-tamsi);
+    font-weight: 600;
+    margin-bottom: var(--tarpas-xs);
+}
+
+/* ---------- Lentelės (kainos) ---------- */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--spalva-balta);
+    border: 1px solid var(--spalva-krastine);
+    box-shadow: var(--seselis);
+    margin-top: var(--tarpas-l);
+}
+
+caption {
+    text-align: left;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--spalva-pagr);
+    padding-bottom: var(--tarpas-xs);
+}
+
+th, td {
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+}
+
+thead th {
+    background-color: var(--spalva-fono-svelni);
+    color: var(--spalva-pagr);
+    border-bottom: 2px solid var(--spalva-akcen);
+}
+
+/* kas antra eilutė vos tamsesnė — akiai lengviau sekti ilgas lenteles */
+tbody tr:nth-child(even) { background-color: rgba(42, 157, 143, 0.07); }
+
+th:last-child, td:last-child { text-align: right; }
+
+td:last-child { font-weight: 600; }
+
+/* ---------- Poraštė ---------- */
+
+footer {
+    background-color: var(--spalva-pagr);
+    color: rgba(255, 255, 255, 0.85);
+    padding: var(--tarpas-l) 0 var(--tarpas-m);
+    margin-top: auto; /* prilipdo poraštę prie apačios (žr. body) */
+}
+
+footer a { color: #7fd1c8; }
+
+footer a:hover { color: var(--spalva-balta); }
+
+footer p { margin-bottom: var(--tarpas-xs); }
+
+footer p:last-child {
+    margin-top: var(--tarpas-m);
+    margin-bottom: 0;
+    padding-top: var(--tarpas-s);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Skambinimo mygtukas (tik telefone) ---------- */
 
 .tel-mygtukas {
     position: fixed;
@@ -56,94 +350,60 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 56px;
-    height: 56px;
-    background-color: var(--spalva-pagr);
-    color: var(--spalva-fono);
+    width: 60px;
+    height: 60px;
+    background-color: var(--spalva-akcen-tamsi);
+    color: var(--spalva-balta);
     text-decoration: none;
     border-radius: 50%;
+    box-shadow: 0 6px 18px rgba(38, 70, 83, 0.35);
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.tel-mygtukas:hover {
+    transform: scale(1.06);
+    background-color: var(--spalva-pagr);
 }
 
-nav a {
-    text-decoration: none;
-    color: var(--spalva-teksto);
-    display: block;
-    padding: 12px 0;
-    transition: color 0.2s ease;
-}
+.tel-mygtukas svg { width: 26px; height: 26px; }
 
-nav a:hover, nav a:focus {
-    color: var(--spalva-akcen);
-}
-
-.meniu-mygtukas {
-    background: none;
-    border: none;
-    font-size: 1.75rem;         
-    color: var(--spalva-pagr);
-    cursor: pointer;   
-    position: static;
-    top: 20px;
-    right: 20px;         
-}
-
-.pavadinimas {
-    text-decoration: none;
-    color: var(--spalva-pagr);
-    font-weight: bold;
-    font-size: 1.5rem;
-}
-
-footer {
-    background-color: var(--spalva-papil);
-}
-
-.container { 
-    max-width: 1100px; 
-    margin: 0 auto; 
-    padding: 0 20px; 
-}
-
-header {
-    background-color: var(--spalva-papil);
-}
-
-nav {
-  display: none;
-}
-
-nav.rodo {
-    display: block;
-}
+/* ---------- Desktop (≥ 768px) ---------- */
 
 @media (min-width: 768px) {
-    .tel-mygtukas {
-        display: none;
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.75rem; }
+
+    .pavadinimas { font-size: 1.25rem; }
+
+    .tel-mygtukas { display: none; }
+    .meniu-mygtukas { display: none; }
+
+    nav {
+        display: block;
+        width: auto;
+        padding-top: 0;
     }
 
     nav ul {
         display: flex;
-        gap: 24px;
+        gap: 28px;
     }
 
-    header .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    nav li + li { border-top: none; }
+
+    /* permatomas apatinis rėmelis rezervuoja vietą, todėl užvedus
+       pelę atsiradęs pabraukimas nepastumia teksto */
+    nav a {
+        padding: 0.4rem 0.1rem;
+        border-bottom: 2px solid transparent;
     }
 
-    .meniu-mygtukas {
-        display: none;
-    }
+    nav a:hover,
+    nav a[aria-current="page"] { border-bottom-color: var(--spalva-akcen); }
 
-    nav {
-        display: block;
-    }
+    .hero { padding: 6rem 0; }
+    .hero h1 { font-size: 3rem; }
+    .paantraste { font-size: 1.25rem; }
+
+    .korteles { gap: var(--tarpas-m); }
 }
-
