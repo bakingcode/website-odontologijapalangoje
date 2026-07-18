@@ -1,9 +1,34 @@
 /* =====================================================================
    Palangos odontologijos centras — stilius
-   Tvarka: kintamieji → bazė ir tipografija → antraštė ir meniu → hero
-   → mygtukai → kortelės → lentelės → poraštė → skambinimo mygtukas
-   → desktop (@media min-width: 768px)
+   Tvarka: šriftai → kintamieji → bazė ir tipografija → antraštė ir meniu
+   → hero → mygtukai → kortelės → nuotraukos ir žemėlapis → lentelės
+   → poraštė → skambinimo mygtukas → desktop (@media min-width: 768px)
    ===================================================================== */
+
+/* ---------- Šriftai ----------
+   Laikomi mūsų serveryje (fonts/), ne Google CDN: jokių užklausų į Google
+   (BDAR), greičiau, veikia be interneto. Vienas kintamo storio (variable)
+   failas dengia visus storius nuo 400 iki 700. */
+
+@font-face {
+    font-family: "Plus Jakarta Sans";
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap; /* kol šriftas siunčiasi, tekstas rodomas atsarginiu */
+    src: url("../fonts/plus-jakarta-sans-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin-ext — lietuviškos ą č ę ė į š ų ū ž; naršyklė šį failą siunčiasi
+   tik jei puslapyje tokių ženklų yra (tai nurodo unicode-range) */
+@font-face {
+    font-family: "Plus Jakarta Sans";
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url("../fonts/plus-jakarta-sans-latin-ext.woff2") format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
 * {
     margin: 0;
@@ -32,7 +57,7 @@
 body {
     background-color: var(--spalva-fono);
     color: var(--spalva-teksto);
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     line-height: 1.6;
     /* flex stulpelis + auto tarpas poraštėje: poraštė visada prilimpa
        prie lango apačios net trumpuose puslapiuose (pvz., Kontaktai) */
@@ -86,7 +111,7 @@ a:hover { color: var(--spalva-pagr); }
     outline-offset: 2px;
 }
 
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 
 .container {
     max-width: 1100px;
@@ -186,7 +211,25 @@ nav a[aria-current="page"] {
     padding: var(--tarpas-l) 0;
 }
 
+.hero-vidus {
+    display: grid;
+    gap: var(--tarpas-m);
+    align-items: center;
+}
+
 .hero h1 { font-size: 2.25rem; }
+
+.hero-nuotrauka {
+    width: 100%;
+    /* aspect-ratio + object-fit apkerpa nuotrauką pačiu CSS'u (pikseliai
+       nekeičiami): 3/2 rėmelis, kadruojama nuo viršaus — gatvė apačioje
+       nupjaunama, pastatas su iškaba lieka */
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 16px;
+    box-shadow: var(--seselis);
+}
 
 .paantraste {
     font-size: 1.15rem;
@@ -254,6 +297,13 @@ nav a[aria-current="page"] {
     display: flex;
     flex-direction: column;
     margin-bottom: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* pakylėjimas tik kortelėms, kuriose yra nuoroda (:has = „turi viduje") */
+.kortele:has(a):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(38, 70, 83, 0.14);
 }
 
 .kortele h2 {
@@ -277,6 +327,58 @@ nav a[aria-current="page"] {
     color: var(--spalva-akcen-tamsi);
     font-weight: 600;
     margin-bottom: var(--tarpas-xs);
+}
+
+/* apvalus inicialų skritulys — kol neturime tikrų darbuotojų nuotraukų */
+.avataras {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--spalva-fono-svelni);
+    border: 2px solid rgba(42, 157, 143, 0.35);
+    color: var(--spalva-akcen-tamsi);
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.kortele-ikona {
+    width: 34px;
+    height: 34px;
+    color: var(--spalva-akcen);
+    margin-bottom: var(--tarpas-xs);
+}
+
+/* ---------- Nuotraukos ir žemėlapis ---------- */
+
+.figura {
+    margin: var(--tarpas-m) 0;
+    max-width: 480px;
+}
+
+.figura-siaura { max-width: 320px; }
+
+.figura img {
+    border-radius: 12px;
+    box-shadow: var(--seselis);
+}
+
+figcaption {
+    font-size: 0.875rem;
+    color: var(--spalva-papil);
+    margin-top: var(--tarpas-xs);
+}
+
+.zemelapis {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 12px;
+    box-shadow: var(--seselis);
+    margin-top: var(--tarpas-s);
 }
 
 /* ---------- Lentelės (kainos) ---------- */
@@ -401,9 +503,19 @@ footer p:last-child {
     nav a:hover,
     nav a[aria-current="page"] { border-bottom-color: var(--spalva-akcen); }
 
-    .hero { padding: 6rem 0; }
+    /* hero su nuotrauka: tekstas kairėje, nuotrauka dešinėje */
+    .hero { text-align: left; padding: 5rem 0; }
+    .hero-vidus {
+        grid-template-columns: 1.1fr 1fr;
+        gap: var(--tarpas-l);
+    }
     .hero h1 { font-size: 3rem; }
-    .paantraste { font-size: 1.25rem; }
+    .paantraste {
+        font-size: 1.25rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .hero-mygtukai { justify-content: flex-start; }
 
     .korteles { gap: var(--tarpas-m); }
 }

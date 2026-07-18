@@ -132,7 +132,16 @@ faster, and safer than WordPress for our needs.
 > zebra tables (2-col tables wrap fine on mobile — no scroll wrapper needed), dark footer,
 > `aria-current="page"` nav highlight on the 5 main pages. Accent darkened to #1f776c for text/buttons
 > (original #2A9D8F fails 4.5:1 contrast on white; kept as `--spalva-akcen` for decorative use).
-> Step 7 (images) blocked on photos — none migrated from `old_website/` yet. SEO/a11y/Lighthouse remain.
+> **2026-07-18 "what's possible" additions pass** (user-requested demo, built ahead of lessons):
+> images migrated from old site into `images/` (klinika, vaikas, saknys, protezavimas — used WP's
+> pre-sized variants, converted PNG photo → JPG 34 KB); hero now two-column with clinic facade
+> photo; detail pages got `figure`/`figcaption` images with `loading="lazy"` + width/height;
+> Kontaktai got facade photo + Google Maps iframe embed; service cards got inline SVG icons;
+> staff cards got initials avatars — **old staff photos in uploads are DIFFERENT people, never
+> use them for current staff; real photos of Jaunius M. and Skirmantė P. still needed.**
+> SVG tooth favicon on all 8 pages. Self-hosted Plus Jakarta Sans (see decisions).
+> Facade photo is a rainy-day phone shot — a sunny replacement + interior photos would be an
+> easy upgrade. Remaining in Module 8: meta descriptions/OG/sitemap, a11y keyboard pass, Lighthouse.
 **Learn:** the things that separate a hobby page from a professional one.
 - Page titles, meta descriptions, Open Graph (link previews), favicon, sitemap
 - Accessibility pass (keyboard nav, contrast, alt text, labels)
@@ -166,6 +175,10 @@ faster, and safer than WordPress for our needs.
   Adding more languages later = copy folder + translate. `hreflang` tags added in Module 8 (SEO).
 - **Preview workflow:** plain double-click `index.html`, refresh browser with Ctrl+R after saving.
 - **Hosting:** Cloudflare Pages (free, fast global CDN, easy git-connected deploys) — Module 9.
+- **Font:** Plus Jakarta Sans (variable 400–700, woff2, 48 KB total), **self-hosted** in `fonts/`
+  with latin + latin-ext subsets (Lithuanian diacritics). Deliberately NOT the Google Fonts CDN:
+  no visitor requests to Google (GDPR — courts have ruled against the CDN in the EU), faster,
+  works offline. Trade-off: we must re-download files ourselves if we ever want new weights.
 
 ## Still open (decide as we reach them)
 - Exact color palette, fonts, and logo treatment (Module 2).
