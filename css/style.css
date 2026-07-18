@@ -1,0 +1,101 @@
+* {
+    /*margin: 0;*/
+    box-sizing: border-box;
+}
+
+:root {
+    --spalva-pagr: #264653;
+    --spalva-fono: #faffff;
+    --spalva-akcen: #2A9D8F;
+    --spalva-teksto: #22333B;
+    --spalva-papil: #6B7C85;
+}
+
+body {
+    background-color: var(--spalva-fono);
+    color: var(--spalva-teksto);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+}
+
+.tel-mygtukas {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background-color: var(--spalva-pagr);
+    color: var(--spalva-fono);
+    text-decoration: none;
+    border-radius: 50%;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--spalva-teksto);
+}
+
+.pavadinimas {
+    text-decoration: none;
+    color: var(--spalva-pagr);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+footer {
+    background-color: var(--spalva-papil);
+}
+
+.container { 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+header {
+    background-color: var(--spalva-papil);
+}
+
+nav {
+  display: none;
+}
+
+nav.rodo {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .tel-mygtukas {
+        display: none;
+    }
+
+    nav ul {
+        display: flex;
+        gap: 24px;
+    }
+
+    header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .meniu-mygtukas {
+        display: none;
+    }
+
+    nav {
+        display: block;
+    }
+}
+

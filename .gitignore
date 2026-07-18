@@ -1,0 +1,12 @@
+# --- Local reference only: DO NOT COMMIT ---
+# The old WordPress site is kept on disk for content & images only.
+# It is huge AND contains SECRETS (wp-config.php: DB password + auth keys)
+# and PERSONAL DATA (the .sql database dump). It must never go to GitHub.
+old_website/
+
+# Scratch content draft — delete once the service pages are final
+paslaugu-tekstai.md
+
+# OS / editor junk
+Thumbs.db
+.DS_Store
